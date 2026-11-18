@@ -1,0 +1,52 @@
+<title>Contact · Honey</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.0/src/light/style.css">
+<meta name="description" content="Écrivez à l’équipe Honey : questions, salons, partenariats.">
+<link rel="stylesheet" href="assets/site.css">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="wrap">
+  <header class="nav">
+    <a href="honey-landing.html" aria-label="Honey, accueil"><img src="assets/honey-logo.png" alt="Honey"></a>
+    <nav aria-label="Navigation principale">
+      <a class="l" href="honey-landing.html">Accueil</a><a class="l" href="solutions.html">Solutions</a><a class="l" href="a-propos.html">À propos</a><a class="l" href="contact.html" aria-current="page">Contact</a>
+      <a class="btn sm" href="https://honey-client.vercel.app">Commencer</a>
+    </nav>
+  </header>
+  <main id="contenu" class="wrap" style="gap:12px;width:100%">
+<section class="card page-hero s12" style="grid-column:auto"><img class="sym" style="position:absolute;right:-50px;bottom:-70px;width:300px;pointer-events:none" src="assets/honey-symbole.png" alt="" aria-hidden="true"><h1>Parlons <em>de ta beauté.</em></h1><p class="lead">Une question, un salon à ajouter, un partenariat ? Écris-nous, nous te répondons.</p></section><div id="formulaire"></div><section class="bento">
+ <article class="card s7"><h3>Écris-nous</h3>
+  <form id="f" novalidate>
+   <div class="field"><label for="n">Ton nom</label><input id="n" name="nom" autocomplete="name" required></div>
+   <div class="field"><label for="c">Téléphone ou e-mail</label><input id="c" name="contact" autocomplete="tel" required></div>
+   <div class="field"><label for="s">Tu es</label><select id="s" name="sujet"><option>Cliente</option><option>Salon ou institut</option><option>Partenaire</option><option>Autre</option></select></div>
+   <div class="field"><label for="m">Ton message</label><textarea id="m" name="message" required></textarea></div>
+   <div class="cta-row"><button class="btn" type="submit">Envoyer <i class="ph-light ph-arrow-right ic" aria-hidden="true"></i></button></div>
+   <p class="status" id="st" role="status" aria-live="polite"></p>
+  </form></article>
+ <article class="card dark tile s5"><i class="ph-light ph-map-pin ic" aria-hidden="true"></i><div><div class="cap">Coordonnées</div><h3>Kinshasa, RDC</h3><p>Adresse, téléphone et e-mail : à renseigner.</p></div></article>
+ <article class="card tile s12" id="reseaux" style="min-height:0"><h3>Réseaux sociaux</h3><p style="margin-top:8px">Liens Instagram, Facebook et TikTok : à renseigner.</p></article></section><script>
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();var st=document.getElementById('st');
+ if(!this.nom.value.trim()||!this.contact.value.trim()||!this.message.value.trim()){st.textContent='Renseigne ton nom, un moyen de te joindre et ton message.';return}
+ st.textContent='Ce formulaire n’est pas encore relié à une adresse e-mail : ton message n’a pas été envoyé.'});
+</script>
+  </main>
+  <footer class="ft">
+    <div class="fa"><img src="assets/honey-logo.png" alt="Honey"><p>Honey réunit les clientes, les salons et les prestataires pour réserver et gérer la beauté à Kinshasa.</p>
+      <div class="soc"><a href="contact.html#reseaux" aria-label="Instagram"><i class="ph-light ph-instagram-logo ic" aria-hidden="true"></i></a><a href="contact.html#reseaux" aria-label="Facebook"><i class="ph-light ph-facebook-logo ic" aria-hidden="true"></i></a><a href="contact.html#reseaux" aria-label="TikTok"><i class="ph-light ph-tiktok-logo ic" aria-hidden="true"></i></a></div></div>
+    <div class="fc"><h4>Navigation</h4><a href="honey-landing.html">Accueil</a><a href="solutions.html">Solutions</a><a href="a-propos.html">À propos</a></div>
+    <div class="fc"><h4>Solutions</h4><a href="https://honey-client.vercel.app">Honey App</a><a href="solutions.html#honeypro">HoneyPro</a></div>
+    <div class="fc"><h4>Professionnels</h4><a href="professionnels.html#ajouter">Ajouter mon institut</a><a href="professionnels.html">Pourquoi Honey</a></div>
+    <div class="fc"><h4>Contact</h4><a href="contact.html">Nous écrire</a><a href="contact.html#reseaux">Réseaux sociaux</a></div>
+    <div class="fl">
+      <nav aria-label="Pages légales">
+        <a href="legal-confidentialite.html">Confidentialité</a><a href="legal-cgu.html">CGU</a><a href="legal-cgv.html">CGV</a><a href="legal-conditions-professionnelles.html">Conditions professionnelles</a><a href="legal-cookies.html">Cookies</a><a href="legal-mentions-legales.html">Mentions légales</a><a href="legal-annulation-remboursement.html">Annulation et remboursement</a>
+      </nav>
+      <span>© 2026 Honey · Kinshasa, RDC</span>
+    </div>
+  </footer>
+</div>
+<script>(function(){function r(){try{window.dispatchEvent(new Event('resize'))}catch(e){}}addEventListener('load',r);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(r)}setTimeout(r,800);setTimeout(r,2500)})();</script>
