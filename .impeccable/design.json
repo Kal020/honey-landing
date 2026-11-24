@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T00:00:00Z",
+  "title": "Design System: Honey Landing",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "primary", "displayName": "Ink Black", "canonical": "#111111", "tonalRamp": ["#111111", "#2c2c2c", "#454341", "#5a5754", "#85817d", "#b3aca5", "#e9e5e0", "#f7f4f1"] },
+      "espresso": { "role": "secondary", "displayName": "Espresso", "canonical": "#502314", "tonalRamp": ["#1f0d07", "#35170d", "#502314", "#6f3a25", "#8f5a43", "#b37b54", "#d4b39c", "#efe0d6"] },
+      "honey-accent": { "role": "secondary", "displayName": "Honey Tan", "canonical": "#b37b54", "tonalRamp": ["#3a2415", "#59391f", "#7d5336", "#996644", "#b37b54", "#c99b7b", "#dfbea6", "#f0ddd0"] },
+      "paper": { "role": "neutral", "displayName": "Paper White", "canonical": "#ffffff", "tonalRamp": ["#d6d1c8", "#e9e5e0", "#eeeae6", "#f3efeb", "#f7f4f1", "#fafaf8", "#fdfdfc", "#ffffff"] },
+      "soft-panel": { "role": "neutral", "displayName": "Soft Panel", "canonical": "#f7f4f1", "tonalRamp": ["#b3aca5", "#d6d1c8", "#e9e5e0", "#eeeae6", "#f3efeb", "#f7f4f1", "#fbf9f7", "#ffffff"] },
+      "footer-black": { "role": "neutral", "displayName": "Footer Black", "canonical": "#0b0a0a", "tonalRamp": ["#0b0a0a", "#141312", "#1b1a19", "#2a2826", "#5a5754", "#8c857e", "#b3aca5", "#e9e4df"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Home h1 in Archivo 500, tight tracking." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2." },
+      "title": { "displayName": "Title", "purpose": "h3, tile and partner names." },
+      "body": { "displayName": "Body", "purpose": "Manrope paragraphs in warm grey." },
+      "lead": { "displayName": "Lead", "purpose": "Sentence under the h1." },
+      "button": { "displayName": "Button", "purpose": "Archivo 700 buttons and text links." },
+      "label": { "displayName": "Label", "purpose": "Footer column headings only." }
+    },
+    "shadows": [
+      { "name": "phone", "value": "0 22px 40px -14px rgba(16,8,8,.38), 0 2px 4px rgba(16,8,8,.28)", "purpose": "The iPhone frame, the only floating object." },
+      { "name": "menu", "value": "0 18px 40px -18px rgba(17,17,17,.4)", "purpose": "Mobile menu popover." },
+      { "name": "field-focus", "value": "0 0 0 3px rgba(80,35,20,.14)", "purpose": "Focused input ring." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(.16,1,.3,1)", "purpose": "Reveals, hover lifts, arrow slides." },
+      { "name": "reveal-fade", "value": "opacity .9s ease-out", "purpose": "Text reveal on scroll." },
+      { "name": "frame-wipe", "value": "clip-path 1.3s var(--ease), scale 1.8s var(--ease)", "purpose": "Photo frame reveal." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "900px" },
+      { "name": "phone", "value": "560px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ink pill with an arrow that slides on hover.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Commencer</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 28px;border-radius:999px;border:1.5px solid #111;background:#111;color:#fff;font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:.95rem;letter-spacing:-.01em;text-decoration:none;transition:background .25s,transform .35s cubic-bezier(.16,1,.3,1)} .ds-btn:hover{background:#2c2c2c;border-color:#2c2c2c;transform:translateY(-2px)} .ds-btn:focus-visible{outline:2px solid #111;outline-offset:3px} .ds-btn:active{transform:none}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary pill; fills ink on hover.",
+      "html": "<a class=\"ds-btn-out\" href=\"#\">Ajouter mon institut</a>",
+      "css": ".ds-btn-out{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 28px;border-radius:999px;border:1.5px solid #111;background:transparent;color:#111;font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:.95rem;text-decoration:none;transition:background .25s,color .25s,transform .35s cubic-bezier(.16,1,.3,1)} .ds-btn-out:hover{background:#111;color:#fff;transform:translateY(-2px)} .ds-btn-out:focus-visible{outline:2px solid #111;outline-offset:3px}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Underlined Archivo link turning espresso on hover.",
+      "html": "<a class=\"ds-link\" href=\"#\">Voir Honey App</a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;min-height:44px;font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:.95rem;color:#111;text-decoration:none;border-bottom:1.5px solid currentColor;transition:color .25s} .ds-link:hover{color:#502314} .ds-link:focus-visible{outline:2px solid #111;outline-offset:3px}"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "description": "Muted link that draws a honey-tan underline.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Solutions</a><a href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;gap:4px;background:#fff} .ds-nav a{position:relative;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;text-decoration:none;font-family:Manrope,system-ui,sans-serif;font-weight:600;font-size:.92rem;color:#5a5754;transition:color .25s} .ds-nav a::after{content:\"\";position:absolute;left:12px;right:12px;bottom:9px;height:2px;background:#b37b54;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)} .ds-nav a:hover,.ds-nav a[aria-current]{color:#111} .ds-nav a:hover::after,.ds-nav a[aria-current]::after{transform:scaleX(1)} .ds-nav a:focus-visible{outline:2px solid #111;outline-offset:3px}"
+    },
+    {
+      "name": "Partner Chip",
+      "kind": "chip",
+      "description": "Hairline chip with a rounded initial badge.",
+      "html": "<div class=\"ds-partner\"><span class=\"ds-ini\">H</span><div><b>Institut</b><span>Gombe</span></div></div>",
+      "css": ".ds-partner{display:flex;align-items:center;gap:16px;border:1px solid #e9e5e0;border-radius:20px;padding:16px 24px 16px 16px;transition:border-color .3s,transform .4s cubic-bezier(.16,1,.3,1)} .ds-partner:hover{border-color:#cfc6bd;transform:translateY(-2px)} .ds-ini{width:48px;height:48px;border-radius:14px;background:#f7f4f1;color:#502314;font-family:Archivo,sans-serif;font-weight:500;font-size:1.3rem;display:grid;place-items:center} .ds-partner b{display:block;font-family:Archivo,sans-serif;font-weight:500;font-size:1.2rem;letter-spacing:-.02em;color:#111} .ds-partner span:not(.ds-ini){font-size:.95rem;color:#5a5754}"
+    },
+    {
+      "name": "Form Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "White field with ink focus and faint espresso ring.",
+      "html": "<div class=\"ds-field\"><label for=\"n\">Nom</label><input id=\"n\" type=\"text\" placeholder=\"Votre nom\"></div>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:8px} .ds-field label{font-family:Manrope,sans-serif;font-weight:600;font-size:.92rem;color:#111} .ds-field input{font:inherit;color:#111;background:#fff;border:1px solid #d9d3cd;border-radius:10px;padding:12px 14px;min-height:44px;transition:border-color .2s,box-shadow .2s} .ds-field input:hover{border-color:#b8afa6} .ds-field input:focus{outline:none;border-color:#111;box-shadow:0 0 0 3px rgba(80,35,20,.14)} .ds-field input::placeholder{color:#6f6a65}"
+    },
+    {
+      "name": "Soft Panel Tile",
+      "kind": "card",
+      "refersTo": "tile",
+      "description": "Pale panel with title, line and link; the phone sits cropped beside it.",
+      "html": "<div class=\"ds-tile\"><h2>Honey App</h2><p>Découvrir, comparer, réserver.</p></div>",
+      "css": ".ds-tile{background:#f7f4f1;border-radius:28px;padding:48px 44px;color:#5a5754;font-family:Manrope,sans-serif} .ds-tile h2{font-family:Archivo,sans-serif;font-weight:500;font-size:1.9rem;letter-spacing:-.03em;line-height:1.1;color:#111} .ds-tile p{margin-top:14px;max-width:34ch}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The White Gallery Wall",
+    "overview": "The pages are a white wall. Photos of real salons and real captures of the two apps (Honey App, HoneyPro) hang on it and do the persuading. The page itself stays quiet: near-black ink, warm grey text, a very pale warm panel, and a black footer that closes it. Colour lives inside the app screenshots, not in the chrome.\n\nBrown is a pinch of seasoning. Espresso (#502314) and honey tan (#b37b54) appear only as small details: a partner's initial, the active-link underline, the step icons, the Vision tile, text selection. Layout is generous (112px section padding, 88px split gaps) and calm. Motion is a slow reveal, never a bounce.\n\nThe system rejects a full-width photo hero veiled in brown, and brown tiles as the general surface.",
+    "keyCharacteristics": [
+      "White page, #f7f4f1 panels, black footer; brown only as a detail.",
+      "Rounded photo frames (20px) with one arch (top fully round) for the lead photo.",
+      "Light-titanium iPhone frame with thin black bezel and Dynamic Island around every app capture.",
+      "Archivo titles tightly tracked, Manrope body; pill buttons.",
+      "Depth is tonal and hairline; shadow is reserved for the phone and the mobile menu."
+    ],
+    "rules": [
+      { "name": "The Pinch of Brown Rule", "body": "Brown and tan mark details, never fill sections or buttons. The one large brown surface is the Vision tile, and it is a single tile, not a pattern.", "section": "colors" },
+      { "name": "The Colour Lives in the App Rule", "body": "Saturated colour comes from the screenshots. Do not add decorative colour to the chrome to compensate.", "section": "colors" },
+      { "name": "The Balanced Title Rule", "body": "All h1 to h3 use text-wrap: balance and negative tracking (-0.03em); never loosen them.", "section": "typography" },
+      { "name": "The Flat Wall Rule", "body": "Cards, tiles and frames carry no shadow. Only the phone and the open menu lift.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the page white and let photos and real app captures carry the colour.",
+      "Do use brown (#502314) and tan (#b37b54) only for details, plus the single Vision tile.",
+      "Do frame every app screenshot in the titanium iPhone and use only real owner-supplied captures and photos.",
+      "Do use pill buttons at 44px minimum, Archivo 700, and a 2px upward lift on hover.",
+      "Do reveal content softly (opacity, clip wipe, slow ease cubic-bezier(.16,1,.3,1)) and honour prefers-reduced-motion; content is visible without JavaScript.",
+      "Do separate with 1px hairlines and tone before reaching for a shadow."
+    ],
+    "donts": [
+      "Don't put a full-width photo hero veiled in brown on any page.",
+      "Don't fill sections or buttons with brown.",
+      "Don't add shadows to cards, tiles or photo frames.",
+      "Don't loosen or capitalize titles; Archivo stays 500, tight, sentence case.",
+      "Don't swap in stock photography or mocked-up screens."
+    ]
+  }
+}
