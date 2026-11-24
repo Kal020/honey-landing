@@ -1,6 +1,6 @@
 ---
 name: Honey Landing
-description: Une page blanche de galerie où les photos de salons et les captures des deux applications font tout le travail.
+description: Une mosaïque bento blanche où chaque tuile, photo de salon ou capture d'application, prouve une chose.
 colors:
   ink: "#111111"
   muted: "#5a5754"
@@ -11,18 +11,18 @@ colors:
   field-stroke: "#d9d3cd"
   espresso: "#502314"
   honey-accent: "#b37b54"
+  ink-tile-text: "#cfc8c1"
   footer-black: "#0b0a0a"
   footer-text: "#b3aca5"
   footer-label: "#8c857e"
   footer-mark: "#1b1a19"
-  titanium: "#d6d1c8"
 typography:
   display:
     fontFamily: "Archivo, system-ui, -apple-system, 'Segoe UI', sans-serif"
-    fontSize: "clamp(2.7rem, 6.4vw, 5.4rem)"
+    fontSize: "clamp(3.2rem, 8.4vw, 6rem)"
     fontWeight: 500
-    lineHeight: 1.1
-    letterSpacing: "-0.03em"
+    lineHeight: 0.98
+    letterSpacing: "-0.04em"
   headline:
     fontFamily: "Archivo, system-ui, -apple-system, 'Segoe UI', sans-serif"
     fontSize: "clamp(2rem, 4vw, 3.2rem)"
@@ -42,7 +42,7 @@ typography:
     lineHeight: 1.6
   lead:
     fontFamily: "Manrope, system-ui, -apple-system, 'Segoe UI', sans-serif"
-    fontSize: "1.18rem"
+    fontSize: "1.1rem"
     fontWeight: 400
     lineHeight: 1.6
   button:
@@ -58,13 +58,12 @@ typography:
 rounded:
   sm: "10px"
   md: "20px"
-  lg: "28px"
   pill: "999px"
 spacing:
   xs: "8px"
-  sm: "16px"
-  md: "24px"
-  lg: "48px"
+  sm: "14px"
+  md: "20px"
+  lg: "28px"
   xl: "88px"
   section: "112px"
 components:
@@ -88,12 +87,26 @@ components:
     rounded: "{rounded.pill}"
   tile:
     backgroundColor: "{colors.soft-panel}"
-    rounded: "{rounded.lg}"
-    padding: "48px 0 0 44px"
-    height: "500px"
-  photo-frame:
+    rounded: "{rounded.md}"
+    padding: "28px"
+    height: "236px"
+  tile-white:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.md}"
+    padding: "28px"
+  tile-ink:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.md}"
+    padding: "28px"
+  tile-photo:
     backgroundColor: "{colors.soft-panel}"
     rounded: "{rounded.md}"
+  tile-mini:
+    backgroundColor: "{colors.paper}"
+    rounded: "{rounded.md}"
+    padding: "22px"
   card:
     backgroundColor: "{colors.paper}"
     rounded: "{rounded.md}"
@@ -109,6 +122,10 @@ components:
     textColor: "{colors.paper}"
     rounded: "{rounded.md}"
     padding: "32px"
+  dock:
+    backgroundColor: "{colors.paper}"
+    rounded: "{rounded.pill}"
+    padding: "8px"
   footer:
     backgroundColor: "{colors.footer-black}"
     textColor: "{colors.footer-text}"
@@ -118,108 +135,125 @@ components:
 
 ## Overview
 
-**Creative North Star: "The White Gallery Wall"**
+**Creative North Star: "The Tiled Gallery Wall"**
 
-The pages are a white wall. Photos of real salons and real captures of the two apps (Honey App, HoneyPro) hang on it and do the persuading. The page itself stays quiet: near-black ink, warm grey text, a very pale warm panel, and a black footer that closes it. Colour lives inside the app screenshots, not in the chrome.
+The pages are still a white wall, but it is now tiled. A twelve-column bento mosaic of photos of real salons and real captures of the two apps (Honey App, HoneyPro) is hung on it, and each tile proves one thing: prices in FC, reviews, free slots, a booking that shows up at once in the salon's agenda. The chrome stays quiet: near-black ink, warm grey text, pale warm panels, a black footer. Colour lives inside the app captures.
 
-Brown is a pinch of seasoning. Espresso (#502314) and honey tan (#b37b54) appear only as small details: a partner's initial, the active-link underline, the step icons, the Vision tile, text selection. Layout is generous (112px section padding, 88px split gaps) and calm. Motion is a slow reveal, never a bounce.
+Brown is a pinch of seasoning. Espresso (#502314) and honey tan (#b37b54) appear as small details: icons, the travelling dot, marquee separators, nav underlines, the partner initial, one Vision tile, text selection. The hero title is very large (up to 6rem) on two lines; everything else is calm. Motion is soft and physical: tiles rise in a cascade, the top mosaic lifts at different speeds on scroll, a warm glow follows the pointer, words drift in a marquee, and one band photo grows as it enters. Never a bounce.
 
-The system rejects a full-width photo hero veiled in brown, and brown tiles as the general surface.
+The system rejects a column of stacked sections and a full-width photo hero veiled in brown; brown tiles are never the general surface.
 
 **Key Characteristics:**
-- White page, #f7f4f1 panels, black footer; brown only as a detail.
-- Rounded photo frames (20px) with one arch (top fully round) for the lead photo.
-- Light-titanium iPhone frame with thin black bezel and Dynamic Island around every app capture.
-- Archivo titles tightly tracked, Manrope body; pill buttons.
-- Depth is tonal and hairline; shadow is reserved for the phone and the mobile menu.
+- White page; tiles are #f7f4f1 or white with a hairline; at most one ink tile per mosaic; black footer.
+- 12-column bento grid, 20px gaps, 20px tile corners; one arch (round top) for the lead photo.
+- Bare app screenshots (no device frame): 18px rounded top corners, 1px hairline, cropped by the bottom edge of an app tile.
+- Archivo 500 titles, tightly tracked and very large in the hero; Manrope body; pill buttons.
+- Depth is tonal and hairline; shadow only on the mobile menu and a focused field; the pointer glow is a tone, not a shadow.
 
 ## Colors
 
 A near-monochrome warm neutral set with one dark brown and one tan used sparingly.
 
 ### Primary
-- **Ink Black** (ink): text, primary buttons, focus ring, outline button border.
+- **Ink Black** (ink): text, primary buttons, focus ring, the single ink sync tile.
 
 ### Secondary
-- **Espresso** (espresso): Vision tile, partner initial on the lead partner, step icons, link hover, text selection, caret and form accent.
-- **Honey Tan** (honey-accent): the 2px active/hover underline under nav links only.
+- **Espresso** (espresso): tile icons, partner initial on the lead partner, link hover, text selection, caret and form accent, and the Vision tile on the about page.
+- **Honey Tan** (honey-accent): nav underline, the marquee dot separators, the travelling dot in the sync tile, and the pointer glow (as an 18% tint).
 
 ### Neutral
-- **Paper White** (paper): page, cards, fields, nav (96% opaque).
-- **Soft Panel** (soft-panel): photo-frame placeholder, app tiles, notices, hover wash on column boxes.
+- **Paper White** (paper): page, white tiles, cards, fields, nav (96% opaque), the mobile dock.
+- **Soft Panel** (soft-panel): default tile, photo placeholder, notices, hover wash.
 - **Warm Grey Text** (muted): paragraphs and secondary copy.
-- **Hairline** (hairline, hairline-faint): 1px dividers, card and box borders, closing-section top rule.
+- **Ink Tile Text** (ink-tile-text): paragraphs on the ink tile.
+- **Hairline** (hairline, hairline-faint): 1px tile and card borders, marquee rules, closing top rule.
 - **Field Stroke** (field-stroke): input borders.
-- **Footer Black** (footer-black), **Footer Text** (footer-text), **Footer Label** (footer-label), **Footer Mark** (footer-mark): the footer and its large masked Honey wordmark, a barely-lifted dark grey.
-- **Titanium** (titanium): iPhone frame only.
+- **Footer Black** (footer-black), **Footer Text** (footer-text), **Footer Label** (footer-label), **Footer Mark** (footer-mark): the footer and its masked Honey wordmark.
 
 ### Named Rules
-**The Pinch of Brown Rule.** Brown and tan mark details, never fill sections or buttons. The one large brown surface is the Vision tile, and it is a single tile, not a pattern.
+**The Pinch of Brown Rule.** Brown and tan mark details, never fill sections or buttons. The one large brown surface is the Vision tile; it is a single tile, not a pattern.
 
-**The Colour Lives in the App Rule.** Saturated colour comes from the screenshots. Do not add decorative colour to the chrome to compensate.
+**The One Ink Tile Rule.** A mosaic holds at most one ink tile, and it carries the single most important claim (synchronisation). Ink is not a second tile colour.
+
+**The Colour Lives in the App Rule.** Saturated colour comes from the screenshots and photos. Do not add decorative colour to the chrome to compensate.
 
 ## Typography
 
 **Display Font:** Archivo (with system-ui sans fallbacks)
 **Body Font:** Manrope (with system-ui sans fallbacks)
 
-**Character:** Archivo at weight 500 with tight negative tracking gives titles a confident, modern voice; Manrope keeps the reading text open and friendly at phone sizes.
+**Character:** Archivo at weight 500 with tight negative tracking gives titles a confident voice, very large and nearly touching lines at hero scale; Manrope keeps reading text open at phone sizes.
 
 ### Hierarchy
-- **Display** (500, clamp(2.7rem, 6.4vw, 5.4rem), 1.1): the home h1; inner pages use clamp(2.4rem, 5.2vw, 4.4rem).
-- **Headline** (500, clamp(2rem, 4vw, 3.2rem), 1.1): section h2; the closing call uses up to 5rem.
-- **Title** (500, 1.5rem, 1.1): h3, tile titles (1.9rem), row labels (1.2rem), partner names.
-- **Body** (400, 17px, 1.6, muted colour): paragraphs, capped around 40 to 44ch in split text.
-- **Lead** (400, 1.18rem): the sentence under the h1, 40 to 44ch.
+- **Display** (500, clamp(3.2rem, 8.4vw, 6rem), 0.98, -0.04em): the home h1 on two lines; mobile clamp(3rem, 13vw, 4.6rem). Inner-page h1 uses clamp(2.4rem, 5.2vw, 4.4rem) at 1.1.
+- **Headline** (500, clamp(2rem, 4vw, 3.2rem), 1.1): section h2; tile h2 clamp(2rem, 3.2vw, 2.8rem); the closing call up to 5rem; marquee words clamp(2rem, 4.4vw, 3.4rem).
+- **Title** (500, 1.5rem, 1.1): h3; tile h3 clamp(1.3rem, 2vw, 1.7rem); mini tile 1.25rem; list and partner names 1.2rem.
+- **Body** (400, 17px, 1.6, muted): paragraphs; tile paragraphs capped near 34ch, split text near 40ch.
+- **Lead** (400, 1.1rem in the hero, 1.18rem elsewhere, 36 to 44ch): the sentence beside or under the h1.
 - **Button** (Archivo 700, 0.95rem, -0.01em): buttons and text links.
 - **Label** (Manrope 600, 0.8rem, 0.08em, uppercase): footer column headings only.
 
 ### Named Rules
-**The Balanced Title Rule.** All h1 to h3 use `text-wrap: balance` and negative tracking (-0.03em); never loosen them.
+**The Balanced Title Rule.** All h1 to h3 use `text-wrap: balance` and negative tracking; never loosen them or set them in capitals.
 
 ## Layout
 
-Single container: `min(1180px, 100% - 48px)`, 32px side margin below 560px. Sections breathe at 112px vertical padding (76px under 900px). The recurring structure is a two-column split (88px gap, text beside a photo frame, alternating sides, 500px max frame width) and, on the home, a 1.05/.95 hero with a three-photo collage. Inner pages open with a title-left, photo-right header. App tiles sit two across (500px tall), with a phone cropped at the tile's bottom edge. Column boxes (`--n` columns) share hairline borders. Under 900px everything stacks to one column, frames switch to 4:3, the nav collapses to a details menu; under 560px buttons in call-to-action groups go full width. Touch targets are at least 44px. A gallery of 3:4 frames offsets every even frame by 56px.
+Single container: `min(1180px, 100% - 48px)` (100% - 32px under 560px). Sections breathe at 112px vertical padding (76px under 900px; `tight` sections 56px). The home opens with a header row (1.2fr title, .8fr lead and buttons, bottom aligned, 48px gap) above the hero mosaic.
+
+The core structure is the bento: `grid-template-columns: repeat(12, 1fr)`, rows of 236px, 20px gap. Each tile declares its own column span and row span (4 columns by default; spans of 2, 3, 5, 6 are used, with 2-row tall tiles for photos and app captures). The hero mosaic uses a fluid row of 150 to 215px; partner and contact mosaics set their own row (320px, 160px). The contact page splits a 5-column stack (info and social tiles) beside a 7-column, 4-row form tile. Inner pages are short bentos: solutions holds two app tiles (6 columns each) above a four-column steps box; professionnels holds one HoneyPro tile, one wide mini tile and two half mini tiles, then a split with the form card; a-propos holds a 5/7 mission and vision pair above a four-column values box. Remaining non-mosaic structures: a two-column split (88px gap, text beside a 500px photo frame, alternating sides), inner-page headers (title left, photo right), hairline column boxes, a centred scroll-grow photo band, a word marquee strip, and a centred closing call.
+
+Under 900px the bento collapses to two columns with 14px gaps; each tile takes a mobile span (2 by default, 1 for half-width pairs), app tiles grow to 540px (760px on the partner mosaic) and re-centre their screenshot (250px wide, 300px visible) under the text, and the hero mosaic is reordered (tall arch beside two stacked photos, app tile full width). Splits and headers stack, frames switch to 4:3, the nav collapses to a details menu. Under 560px tile padding tightens to 22px, buttons in call groups go full width, and a fixed pill dock appears. Touch targets are at least 44px.
 
 ## Elevation & Depth
 
-Flat by default: depth comes from tone (white against #f7f4f1), 1px hairlines and overlapping photo frames (a 6px white outline separates the small collage photo). Shadows are rare and physical, used only on objects that float.
+Flat by default: depth comes from tone (white against #f7f4f1 against one ink tile), 1px hairlines, and the entrance choreography. Tiles carry no shadow, ever; their hover response is a warm radial glow (honey tan at 18%) that follows the pointer inside the tile, fading in over .5s, on pointer devices only. Shadows are reserved for the objects that float: the menu popover and a focused field.
 
 ### Shadow Vocabulary
-- **Phone** (`box-shadow: 0 22px 40px -14px rgba(16,8,8,.38), 0 2px 4px rgba(16,8,8,.28)`): the iPhone frame.
 - **Menu** (`box-shadow: 0 18px 40px -18px rgba(17,17,17,.4)`): the mobile menu popover.
 - **Field focus** (`box-shadow: 0 0 0 3px rgba(80,35,20,.14)` with an ink border): focused inputs.
 
 ### Named Rules
-**The Flat Wall Rule.** Cards, tiles and frames carry no shadow. Only the phone and the open menu lift.
+**The Flat Tile Rule.** Tiles, cards and frames carry no shadow; hover is a tone change or the pointer glow. Only the open menu and a focused field lift or ring.
 
 ## Shapes
 
-Soft and round. Pills (999px) for buttons and the skip link; 10px for fields, notices and menu items; 20px for photo frames, cards, partner chips and column boxes; 28px for the app tiles and panel. The lead photo is an arch (`999px 999px 20px 20px`). Phone frames are 42px at the top with a squared bottom that is cropped by the tile. Initial badges are 14px rounded squares.
+Soft and round with one radius for the mosaic. Pills (999px) for buttons, the skip link, the dock and the flow chips; 10px for fields, notices and menu items; 20px for every tile, photo frame, card, partner chip and column box. The lead photo is an arch (`999px 999px 20px 20px`). App screenshots are 18px rounded at the top with a squared bottom cropped by the tile. Initial badges are 14px rounded squares. The scroll-grow band photo animates its corner from 56px to 20px as it reaches full size.
 
 ## Components
 
 ### Buttons
 - **Shape:** full pill (999px), minimum 44px high, 1.5px border.
-- **Primary:** ink black fill, white Archivo 700 text, padding 12px 28px.
-- **Hover / Focus:** lifts 2px and lightens to #2c2c2c; the trailing arrow icon slides 4px right; focus is a 2px ink outline offset 3px (white in the footer).
-- **Variants:** outline (transparent, ink border, fills ink on hover), white (on dark), outline-white (55% white border), small (9px 20px).
+- **Primary:** ink fill, white Archivo 700 text, padding 12px 28px.
+- **Hover / Focus:** lifts 2px and lightens to #2c2c2c; the trailing arrow slides 4px right; focus is a 2px ink outline offset 3px (white in the footer).
+- **Variants:** outline (transparent, fills ink on hover), white (on dark), outline-white (55% white border), small (9px 20px).
 - **Text link:** Archivo 700 with a 1.5px underline rule; hover turns espresso and the arrow nudges up-right.
 
 ### Navigation
 Sticky, 96% white, 72px tall, logo at 28px. Links are Manrope 600 at 0.92rem in muted grey; hover and current page turn ink and draw a 2px honey-tan underline from the left. A hairline appears under the bar after scroll. Under 900px links collapse into a details menu behind a round bordered button.
 
-### Photo Frames
-Rounded 20px frames on #f7f4f1, 4:5 by default. Images reveal with a clip-path wipe and a settle from 1.22 scale, gently parallax where supported, and zoom to 1.04 on hover. Reduced motion shows them static.
+### Bento Tiles
+The unit of the system. Base tile: soft panel, 20px corners, 28px padding, content spaced between top and bottom. Variants: **white** (white with a hairline), **ink** (the one sync tile, with a pill flow "Honey App to HoneyPro" and a honey-tan dot travelling along a line), **photo** (no padding, the photo fills the tile and takes the frame reveal; one is the arch), **mini** (22px padding, a 30px espresso icon above a 1.25rem title and a short line; a wide mini steps title up to 1.7rem), and **ticks** (a list of Archivo 500 lines with 24px espresso icons). Tiles enter in a cascade (fade and rise, staggered by an inline delay); the hero tiles rise 32px at .97 scale and then lift on scroll at alternating rates (odd 26px, even 52px) where scroll-driven animation is supported.
 
-### App Tiles and Phone
-Soft panel tiles hold a title, a line, a link, and a cropped light-titanium iPhone (250px, black 6px bezel, Dynamic Island, white status bar) showing a real app capture. Two phones can overlap in a panel (`duo`), the lower one sunk 40px.
+### App Tiles and Screenshots
+Tiles of type app hold a title, a line, an optional link, and a bare real capture of the app screen (no device frame): 18px rounded top corners, a 1px hairline border, no bottom border, anchored to the tile's bottom edge so the tile crops it, with a capped max-height. It rises in (64px, soft fade) when it enters view. Two layouts: row (text left up to 46%, screenshot right, 260px at most) and col (text above, screenshot centred at 240px, hero 210px). On mobile the screenshot centres under the text at 250px wide by 300px visible height. The partner tile on the home is a full-width row tile with two partner chips under the text.
 
-### Cards and Column Boxes
-White, 1px hairline, 20px radius. Column boxes divide with hairlines, wash to soft panel on hover, and may lead with a 34px espresso icon.
+### Marquee
+A word marquee on the home only (hairline top and bottom, Archivo 500 words at up to 3.4rem separated by 12px honey-tan dots, 46s linear loop) opens the page's second act. It pauses on hover; with reduced motion it stops and scrolls by hand.
 
-### Fields
-White, 1px #d9d3cd stroke, 10px radius, 44px minimum height. Hover darkens the stroke; focus turns it ink with a faint espresso ring. Labels are Manrope 600 at 0.92rem above.
+### Icons
+Phosphor icon-font glyphs (class `ph-light`, thin line weight, loaded from the @phosphor-icons/web light stylesheet) are the icon set: 30px espresso glyphs on mini tiles, 34px on column boxes, 24px on tick lists, 18px or 16px arrows in buttons and links, a 22px menu glyph. They are decorative (`aria-hidden`) and inherit colour from the container.
+
+### Scroll-Grow Band
+One wide photo (16:10, max 940px) that scales from .68 to 1 while its corners tighten and the image settles from 1.28 scale, driven by a 0 to 1 custom property updated from scroll; centred text and a button follow.
+
+### Cards, Column Boxes and Partner Chips
+White, 1px hairline, 20px radius. Column boxes divide with hairlines, wash to soft panel on hover, and may lead with a 34px espresso icon (two columns under 900px, one under 560px). Partner chips carry a 48px initial badge and rise 2px on hover.
+
+### Fields and Contact
+White, 1px #d9d3cd stroke, 10px radius, 44px minimum height. Hover darkens the stroke; focus turns it ink with a faint espresso ring. Labels are Manrope 600 at 0.92rem above. On the contact page the form lives in one large tile with a transparent card; info tiles show a small label over an Archivo 500 value (1.45rem).
+
+### Mobile Dock
+Under 560px, a fixed white pill with a hairline holds two equal buttons (Commencer, Ajouter mon institut). It slides in after 520px of scroll and slides away over the closing call, the footer and any form.
 
 ### Footer
 Black (#0b0a0a): a white Archivo statement, the inverted logo, link columns in light grey with uppercase labels, hairline rules at 12% white, and a huge Honey wordmark made from the logo PNG used as a CSS mask in a barely visible dark grey, half-cropped by the bottom edge and rising into place on reveal.
@@ -228,15 +262,16 @@ Black (#0b0a0a): a white Archivo statement, the inverted logo, link columns in l
 
 ### Do:
 - **Do** keep the page white and let photos and real app captures carry the colour.
-- **Do** use brown (#502314) and tan (#b37b54) only for details, plus the single Vision tile.
-- **Do** frame every app screenshot in the titanium iPhone and use only real owner-supplied captures and photos.
+- **Do** compose pages as 12-column bento mosaics with 20px gaps and 20px corners; give each tile one claim.
+- **Do** use brown (#502314) and tan (#b37b54) only for details, plus the single Vision tile; allow at most one ink tile per mosaic.
+- **Do** show every app screenshot bare (18px top corners, hairline) cropped at the tile's bottom edge, and use only real owner-supplied captures and photos.
 - **Do** use pill buttons at 44px minimum, Archivo 700, and a 2px upward lift on hover.
-- **Do** reveal content softly (opacity, clip wipe, slow ease `cubic-bezier(.16,1,.3,1)`) and honour `prefers-reduced-motion`; content is visible without JavaScript.
+- **Do** reveal softly (opacity, rise, clip wipe, ease `cubic-bezier(.16,1,.3,1)`), keep content visible without JavaScript, give every moving element a reduced-motion state, and collapse mosaics to two columns on phones.
 - **Do** separate with 1px hairlines and tone before reaching for a shadow.
 
 ### Don't:
-- **Don't** put a full-width photo hero veiled in brown on any page.
+- **Don't** stack full-width sections where a mosaic would carry the same content, or put a full-width photo hero veiled in brown on any page.
 - **Don't** fill sections or buttons with brown.
-- **Don't** add shadows to cards, tiles or photo frames.
+- **Don't** add shadows to tiles, cards or photo frames; the pointer glow is the tile hover.
 - **Don't** loosen or capitalize titles; Archivo stays 500, tight, sentence case.
-- **Don't** swap in stock photography or mocked-up screens.
+- **Don't** swap in stock photography or mocked-up screens, and don't wrap captures in a device frame.
