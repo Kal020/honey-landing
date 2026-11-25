@@ -404,7 +404,7 @@ html.js .fmark.in i{transform:translateY(20%)}
   .steps{grid-template-columns:1fr}.steps li{min-height:0;gap:32px}
   .sals{grid-template-columns:repeat(2,1fr);gap:14px}
   .sh{flex-direction:column;align-items:flex-start}
-  .pro .fl{opacity:.5;right:-40px;width:200px}
+  .pro .fl{opacity:.45;right:-50px;top:auto;bottom:-50px;translate:none;width:230px}
 }
 
 /* réseaux : icônes rondes, ressort au survol, halo, léger flottement continu */
@@ -423,3 +423,6 @@ html.js .fmark.in i{transform:translateY(20%)}
 @media (prefers-reduced-motion:reduce){.soc{animation:none}}
 
 .closing h2 .hl{color:var(--accent)}
+
+.pro>div{position:relative;z-index:1}
+.pro .fl{z-index:0}
