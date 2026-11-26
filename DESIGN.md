@@ -234,7 +234,7 @@ Home page only (`assets/hero.css`, `hero.js`, `hero-motion.js`; every motion set
 - **Frame:** full width, `clamp(560px, 100svh, 820px)` high, under an 88px header. Under 900px the photo sits above the text.
 - **Slides:** Coiffure, Maquillage, Massage & spa, Barbier. Each photo holds the right 62% and fades into a flat background tone matched to it; the tone, the photo and the eyebrow change together every 5s (1.1s cross-fade, slow zoom to 1.05). The first photo loads at once, the others after the page.
 - **Text:** bottom left: eyebrow naming the service, the serif title, one sentence, then the service buttons with a progress line and a pause button. Calls to action sit bottom right: one white pill, one translucent pill.
-- **Header:** a white pill floating on the photo, blurred with a soft shadow after scroll; a single underline slides between links; links collapse into the menu under 1060px.
+- **Header:** a white pill floating on the photo, blurred with a hairline after scroll; a single underline slides between links; links collapse into the menu under 1060px. Once the white sections take over, the pill closes from both ends toward its centre and fades; it opens again on the way back up.
 - **Pointer:** mouse only, on the header and hero: dot and sprung ring, a "Découvrir" disc over the photo, magnetic buttons.
 - **Reduced motion:** no autoplay, zoom or custom pointer; slides are chosen by hand.
 - Add a slide only with a real photo of that service. Landscape photos of 2000px or more would let a photo fill the whole frame.

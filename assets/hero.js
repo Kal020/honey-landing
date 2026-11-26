@@ -11,8 +11,18 @@
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
 
   /* en-tête */
-  function stick() { nav.classList.toggle('stuck', window.scrollY > k('stuck')); }
+  function stick() {
+    nav.classList.toggle('stuck', window.scrollY > k('stuck'));
+    /* l'en-tête s'efface dès que les sections blanches prennent leur place sous le hero */
+    var away = hero.getBoundingClientRect().bottom < window.innerHeight * k('hide');
+    if (away && !nav.classList.contains('away')) {
+      var open = nav.querySelector('.menu[open]');
+      if (open) open.open = false;
+    }
+    nav.classList.toggle('away', away);
+  }
   window.addEventListener('scroll', stick, { passive: true });
+  window.addEventListener('resize', stick);
   stick();
 
   /* soulignement qui glisse */
@@ -42,6 +52,8 @@
 
   /* menu : se ferme avec Échap ou un clic à côté */
   var menu = nav.querySelector('.menu');
+  nav.classList.add('can-hide');
+  menu.addEventListener('toggle', function () { nav.classList.toggle('menu-open', menu.open); });
   document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }

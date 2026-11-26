@@ -19,6 +19,7 @@
 
   /* valeurs lues par le JavaScript (nombres sans unité) */
   --k-stuck:24;
+  --k-hide:.72;                /* le menu disparaît quand le bas du hero passe sous cette part de l'écran */
   --k-magnet:6;
   --k-stiffness:350;
   --k-damping:32;
@@ -28,7 +29,7 @@
 /* ───────── en-tête : une pilule blanche posée sur la photo ───────── */
 .nav-h{display:flow-root;height:var(--head);background:transparent;border:0;pointer-events:none;animation:h-head var(--t-head) var(--e-hero) var(--in-head) backwards}
 .nav-h .wrap{pointer-events:auto;width:min(1180px,100% - 32px);min-height:64px;margin-top:12px;padding:0 10px 0 24px;border-radius:var(--pill);background:rgba(255,255,255,.96);transition:box-shadow .4s,background-color .4s}
-.nav-h.stuck .wrap{background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 16px 36px -22px rgba(17,17,17,.45)}
+.nav-h.stuck .wrap{background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(17,17,17,.1)}
 .nav-h .btn.sm{min-height:var(--tap)}
 
 /* soulignement qui glisse d'un lien à l'autre */
@@ -171,4 +172,19 @@ html.cur-on .nav-h,html.cur-on .nav-h *,html.cur-on .hx,html.cur-on .hx *{cursor
   .hx-pause{position:absolute;right:0;top:-14px}
   .hx-eye{min-height:20px;padding-right:56px}
   .hx .hx-in{margin-top:-12px}
+}
+
+/* ───────── disparition du menu : il se referme des deux bords vers le centre ───────── */
+.nav-h{--t-leave:.6s}
+/* le masque suit le contour de la pilule, pour que les bouts restent ronds pendant la fermeture.
+   .can-hide est posée par hero.js : sans JavaScript, rien n'est masqué. */
+.nav-h .wrap{transition:clip-path var(--t-leave) var(--e-hero),opacity .35s ease .1s,scale var(--t-leave) var(--e-hero),box-shadow .4s,background-color .4s}
+.nav-h.can-hide .wrap{clip-path:inset(0 0 0 0 round 32px)}
+.nav-h.away .wrap{clip-path:inset(0 50% 0 50% round 32px);opacity:0;scale:.94;pointer-events:none;transition:clip-path var(--t-leave) cubic-bezier(.65,0,.35,1),opacity .3s ease .25s,scale var(--t-leave) cubic-bezier(.65,0,.35,1)}
+/* au clavier, le menu revient dès qu'un de ses liens reçoit le focus */
+.nav-h.away .wrap:focus-within{clip-path:inset(0 0 0 0 round 32px);opacity:1;scale:1;pointer-events:auto}
+/* menu déroulant ouvert : il dépasse de la pilule, donc pas de masque */
+.nav-h.can-hide.menu-open .wrap{clip-path:none;transition:none}
+@media (prefers-reduced-motion:reduce){
+  .nav-h .wrap,.nav-h.can-hide .wrap,.nav-h.away .wrap{clip-path:none;scale:none;transition:opacity .2s}
 }
