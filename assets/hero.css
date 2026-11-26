@@ -1,0 +1,174 @@
+/* Accueil : en-tête flottant et grand diaporama des prestations.
+   Tous les réglages d'animation sont ici ; hero.js et hero-motion.js lisent ceux dont ils ont besoin. */
+:root{
+  --head:88px;                 /* hauteur de l'en-tête, que la photo recouvre */
+  --f-hero:'Playfair Display',Georgia,'Times New Roman',serif;   /* titre du hero seulement */
+
+  /* courbe et entrée : départ puis durée */
+  --e-hero:cubic-bezier(.22,1,.36,1);
+  --in-head:0ms;     --t-head:500ms;
+  --in-photo:0ms;    --t-photo:1400ms;  --zoom-in:1.08;
+  --in-title:250ms;  --t-title:800ms;   --step-title:110ms;
+  --in-lead:550ms;   --t-lead:600ms;    --step-word:25ms;  --blur-word:6px;
+  --in-cta:750ms;    --t-cta:500ms;     --step-cta:80ms;
+
+  /* diaporama */
+  --t-slide:5s;                /* durée d'affichage d'une prestation */
+  --t-cross:1.1s;              /* fondu entre deux photos */
+  --zoom-slide:1.05;           /* lent rapprochement pendant l'affichage */
+
+  /* valeurs lues par le JavaScript (nombres sans unité) */
+  --k-stuck:24;
+  --k-magnet:6;
+  --k-stiffness:350;
+  --k-damping:32;
+  --k-mass:.6;
+}
+
+/* ───────── en-tête : une pilule blanche posée sur la photo ───────── */
+.nav-h{display:flow-root;height:var(--head);background:transparent;border:0;pointer-events:none;animation:h-head var(--t-head) var(--e-hero) var(--in-head) backwards}
+.nav-h .wrap{pointer-events:auto;width:min(1180px,100% - 32px);min-height:64px;margin-top:12px;padding:0 10px 0 24px;border-radius:var(--pill);background:rgba(255,255,255,.96);transition:box-shadow .4s,background-color .4s}
+.nav-h.stuck .wrap{background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 16px 36px -22px rgba(17,17,17,.45)}
+.nav-h .btn.sm{min-height:var(--tap)}
+
+/* soulignement qui glisse d'un lien à l'autre */
+.nav-h .links{position:relative}
+.nav-h .links .ind{position:absolute;left:0;bottom:9px;width:100px;height:2px;background:var(--accent);transform-origin:left;pointer-events:none}
+.nav-h .links .ind.go{transition:transform .5s var(--e-hero)}
+.nav-h .links.has-ind a::after{display:none}
+
+/* menu burger */
+.nav-h .menu[open] nav{animation:h-menu .35s var(--e-hero)}
+.nav-h .menu nav{transform-origin:top right}
+.nav-h .menu[open] nav a{animation:h-rise .4s var(--e-hero) backwards}
+.nav-h .menu[open] nav a:nth-child(2){animation-delay:40ms}
+.nav-h .menu[open] nav a:nth-child(3){animation-delay:80ms}
+.nav-h .menu[open] nav a:nth-child(4){animation-delay:120ms}
+.nav-h .menu[open] nav a:nth-child(5){animation-delay:160ms}
+
+/* ───────── hero ───────── */
+.hx{position:relative;overflow:hidden;margin-top:calc(-1 * var(--head));height:clamp(560px,100vh,820px);height:clamp(560px,100svh,820px);background-color:var(--bg);transition:background-color var(--t-cross) ease}
+.hx-media{position:absolute;top:0;bottom:0;right:0;width:62%}
+.hx-slide{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;transition:opacity var(--t-cross) ease,visibility 0s var(--t-cross);-webkit-mask-image:linear-gradient(90deg,transparent,#000 38%);mask-image:linear-gradient(90deg,transparent,#000 38%)}
+.hx-slide.on{opacity:1;visibility:visible;transition:opacity var(--t-cross) ease,visibility 0s}
+.hx-slide picture{display:block;width:100%;height:100%}
+.hx-slide:first-child picture{animation:h-zoom var(--t-photo) var(--e-hero) var(--in-photo) backwards}
+.hx-slide img{width:100%;height:100%;object-fit:cover;object-position:var(--pos);transition:scale calc(var(--t-slide) + var(--t-cross)) linear}
+.hx-slide.on img{scale:var(--zoom-slide)}
+.hx-link{position:absolute;inset:var(--head) 0 0 0}
+.hx-link:focus-visible{outline:3px solid #fff;outline-offset:-8px}
+
+.hx-in{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;height:100%;padding-top:var(--head);padding-bottom:clamp(24px,5vh,56px);pointer-events:none}
+.hx-in>*{pointer-events:auto}
+.hx-t{max-width:min(560px,52%)}
+.hx-eye{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.hx-eye::before{content:"";width:32px;height:1.5px;background:var(--ink)}
+.hx-t h1{font-family:var(--f-hero);font-weight:400;font-size:clamp(3rem,min(6.4vw,12vh),5.6rem);line-height:1.04;letter-spacing:-.02em}
+.hx-t h1 .ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em;white-space:nowrap}
+.hx-t h1 .ln>span{display:block;animation:h-line var(--t-title) var(--e-hero) var(--in-title) backwards}
+.hx-t h1 .ln+.ln>span{color:var(--brown);animation-delay:calc(var(--in-title) + var(--step-title))}
+.hx-t .lead{font-size:1.05rem;max-width:40ch;margin-top:18px;color:#2f2723}
+.hx-t .lead span{display:inline-block;animation:h-word var(--t-lead) var(--e-hero) calc(var(--in-lead) + var(--i) * var(--step-word)) backwards}
+
+/* choix de la prestation, avec la progression des 5 secondes */
+.hx-ctl{display:flex;align-items:center;gap:18px;margin-top:28px}
+.hx-ctl[hidden]{display:none}
+.hx-tab{position:relative;min-height:var(--tap);min-width:var(--tap);padding:0;border:0;background:none;font-family:var(--f-title);font-weight:700;font-size:.86rem;color:var(--ink);white-space:nowrap;cursor:pointer}
+.hx-tab span{opacity:.72;transition:opacity .3s}
+.hx-tab:hover span,.hx-tab[aria-current] span{opacity:1}
+.hx-tab i{position:absolute;left:0;right:0;bottom:4px;height:2px;background:rgba(17,17,17,.2);overflow:hidden}
+.hx-tab i::after{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left}
+.hx-tab[aria-current] i::after{animation:h-progress var(--t-slide) linear forwards}
+.hx.is-paused .hx-tab i::after{animation-play-state:paused}
+.hx-pause{flex:none;display:grid;place-items:center;width:var(--tap);height:var(--tap);border:1.5px solid rgba(17,17,17,.4);border-radius:50%;background:transparent;color:var(--ink);font-size:18px;cursor:pointer}
+
+.hx .cta{flex-wrap:nowrap;margin:0}
+.hx .cta .btn{animation:h-rise var(--t-cta) var(--e-hero) var(--in-cta) backwards}
+.hx .cta .btn+.btn{animation-delay:calc(var(--in-cta) + var(--step-cta))}
+.hx .cta .btn.out{background:rgba(255,255,255,.72);border-color:transparent}
+
+/* ───────── boutons du header et du hero ───────── */
+.nav-h .acts .btn,.hx .cta .btn{position:relative;isolation:isolate;overflow:hidden;transition:translate .4s var(--e-hero),color .3s,border-color .3s,scale .2s}
+.nav-h .acts .btn:hover,.hx .cta .btn:hover{transform:none}
+@media (hover:hover) and (pointer:fine){
+  /* remplissage qui part du point d'entrée de la souris */
+  .nav-h .acts .btn::before,.hx .cta .btn::before{content:"";position:absolute;z-index:-1;left:var(--px,50%);top:var(--py,50%);width:200%;aspect-ratio:1;border-radius:50%;background:var(--ink);translate:-50% -50%;scale:0;transition:scale .55s var(--e-hero)}
+  .nav-h .acts .btn:not(.out)::before{background:#38302b}
+  .nav-h .acts .btn:hover::before,.hx .cta .btn:hover::before{scale:1.15}
+  .nav-h .acts .btn:not(.out):hover{background:var(--ink);border-color:var(--ink)}
+  .hx .cta .btn.wh:hover{background:#fff;border-color:var(--ink);color:#fff}
+  .nav-h .acts .btn.out:hover,.hx .cta .btn.out:hover{background:rgba(255,255,255,.72);color:#fff}
+}
+
+/* ───────── curseur personnalisé (créé par hero-motion.js) ───────── */
+.cur{position:fixed;left:0;top:0;z-index:60;pointer-events:none;opacity:0;transition:opacity .2s}
+.cur.on{opacity:1}
+.cur i{position:absolute;translate:-50% -50%;border-radius:50%;display:block}
+.cur-dot i{width:8px;height:8px;background:var(--ink);box-shadow:0 0 0 1.5px rgba(255,255,255,.85);transition:opacity .2s}
+.cur-ring i{width:36px;height:36px;border:1.5px solid var(--ink);box-shadow:0 0 0 1px rgba(255,255,255,.6);transition:scale .4s var(--e-hero),background-color .3s,opacity .25s}
+.cur-ring b{position:absolute;display:grid;place-items:center;width:88px;height:88px;translate:-50% -50%;border-radius:50%;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-family:var(--f-title);font-weight:700;font-size:.82rem;color:var(--ink);opacity:0;scale:.4;transition:opacity .25s,scale .45s var(--e-hero)}
+.cur-ring.is-link i{scale:1.5;background:rgba(17,17,17,.08)}
+.cur.is-photo i{opacity:0}
+.cur-ring.is-photo b{opacity:1;scale:1}
+.cur.is-text{opacity:0}
+/* le curseur natif n'est masqué qu'une fois le curseur personnalisé monté */
+html.cur-on .nav-h,html.cur-on .nav-h *,html.cur-on .hx,html.cur-on .hx *{cursor:none}
+
+
+@keyframes h-head{from{opacity:0;translate:0 -12px}}
+@keyframes h-zoom{from{scale:var(--zoom-in)}}
+@keyframes h-line{from{translate:0 115%}}
+@keyframes h-word{from{opacity:0;filter:blur(var(--blur-word))}to{opacity:1;filter:blur(0)}}
+@keyframes h-rise{from{opacity:0;translate:0 10px}}
+@keyframes h-menu{from{opacity:0;translate:0 -8px;scale:.96}}
+@keyframes h-fade{from{opacity:0}}
+@keyframes h-progress{to{transform:scaleX(1)}}
+
+@media (max-width:1100px){
+  .hx-in{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:20px}
+  .hx-t{max-width:min(560px,58%)}
+}
+@media (max-width:1100px) and (min-width:901px){.hx{height:clamp(640px,100svh,820px)}}
+
+/* ───────── tablette et téléphone : la photo au-dessus, le texte dessous ───────── */
+@media (max-width:900px){
+  .hx{height:auto}
+  .hx-media{position:relative;width:100%;height:clamp(380px,62svh,640px)}
+  .hx-slide{-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+  .hx-in{height:auto;margin-top:-40px;padding-top:0;padding-bottom:32px;align-items:stretch}
+  .hx-t{max-width:none}
+  .hx-t h1{font-size:clamp(2.8rem,12vw,4.6rem)}
+  .hx-ctl{flex-wrap:wrap;gap:4px 18px;margin-top:20px}
+  .hx .cta{flex-wrap:wrap}
+}
+@media (max-width:560px){
+  .nav-h .wrap{width:calc(100% - 24px);padding:0 8px 0 18px}
+}
+@media (hover:none){
+  .btn:active,.hx-tab:active,.hx-pause:active,.menu summary:active{scale:.97}
+  .nav-h .acts .btn:hover,.hx .cta .btn:hover{translate:none}
+}
+
+/* mouvement réduit : pas de défilement automatique ni de zoom, de simples fondus courts */
+@media (prefers-reduced-motion:reduce){
+  .nav-h,.hx-t h1 .ln>span,.hx-t h1 .ln+.ln>span,.hx-t .lead span,.hx .cta .btn,.hx .cta .btn+.btn{animation:h-fade .3s ease-out backwards}
+  .hx-slide:first-child picture,.nav-h .menu[open] nav,.nav-h .menu[open] nav a{animation:none}
+  .hx-tab[aria-current] i::after{animation:none;transform:none}
+  .hx-pause{display:none}
+  .hx,.hx-slide,.hx-slide.on,.hx-slide img,.nav-h .wrap,.nav-h .links .ind.go,.nav-h .acts .btn,.hx .cta .btn,.nav-h .acts .btn::before,.hx .cta .btn::before{transition:none}
+  .hx-slide.on img{scale:1}
+}
+
+/* entre 900 et 1060 px, les liens ne tiennent plus sur une ligne : menu repliable */
+@media (max-width:1060px){
+  .nav-h .links{display:none}
+  .nav-h .menu{display:block}
+}
+.nav-h .acts .btn,.nav-h .links a{white-space:nowrap}
+/* le bouton pause reste en haut à droite du texte quand les prestations passent à la ligne */
+@media (max-width:900px){
+  .hx-t{position:relative}
+  .hx-pause{position:absolute;right:0;top:-14px}
+  .hx-eye{min-height:20px;padding-right:56px}
+  .hx .hx-in{margin-top:-12px}
+}

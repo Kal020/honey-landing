@@ -17,6 +17,12 @@ colors:
   footer-label: "#8c857e"
   footer-mark: "#1b1a19"
 typography:
+  home-hero:
+    fontFamily: "'Playfair Display', Georgia, 'Times New Roman', serif"
+    fontSize: "clamp(3rem, min(6.4vw, 12vh), 5.6rem)"
+    fontWeight: 400
+    lineHeight: 1.04
+    letterSpacing: "-0.02em"
   display:
     fontFamily: "Archivo, system-ui, -apple-system, 'Segoe UI', sans-serif"
     fontSize: "clamp(3.2rem, 8.4vw, 6rem)"
@@ -141,7 +147,7 @@ The pages are still a white wall, but it is now tiled. A twelve-column bento mos
 
 Brown is a pinch of seasoning. Espresso (#502314) and honey tan (#b37b54) appear as small details: icons, the travelling dot, marquee separators, nav underlines, the partner initial, one Vision tile, text selection. The hero title is very large (up to 6rem) on two lines; everything else is calm. Motion is soft and physical: tiles rise in a cascade, the top mosaic lifts at different speeds on scroll, a warm glow follows the pointer, words drift in a marquee, and one band photo grows as it enters. Never a bounce.
 
-The system rejects a column of stacked sections and a full-width photo hero veiled in brown; brown tiles are never the general surface.
+The system rejects a column of stacked sections and a photo hero veiled in brown; brown tiles are never the general surface. The home opening is the one exception to the bento: a full-width service slideshow (see Components, Home Hero).
 
 **Key Characteristics:**
 - White page; tiles are #f7f4f1 or white with a hairline; at most one ink tile per mosaic; black footer.
@@ -180,12 +186,14 @@ A near-monochrome warm neutral set with one dark brown and one tan used sparingl
 ## Typography
 
 **Display Font:** Archivo (with system-ui sans fallbacks)
+**Home Hero Font:** Playfair Display 400, upright and italic, for the home h1 only
 **Body Font:** Manrope (with system-ui sans fallbacks)
 
 **Character:** Archivo at weight 500 with tight negative tracking gives titles a confident voice, very large and nearly touching lines at hero scale; Manrope keeps reading text open at phone sizes.
 
 ### Hierarchy
-- **Display** (500, clamp(3.2rem, 8.4vw, 6rem), 0.98, -0.04em): the home h1 on two lines; mobile clamp(3rem, 13vw, 4.6rem). Inner-page h1 uses clamp(2.4rem, 5.2vw, 4.4rem) at 1.1.
+- **Home hero** (Playfair Display 400, clamp(3rem, min(6.4vw, 12vh), 5.6rem), 1.04): the home h1 on two lines, the second in italic espresso; mobile clamp(2.8rem, 12vw, 4.6rem).
+- **Display** (500, clamp(3.2rem, 8.4vw, 6rem), 0.98, -0.04em): large Archivo titles. Inner-page h1 uses clamp(2.4rem, 5.2vw, 4.4rem) at 1.1.
 - **Headline** (500, clamp(2rem, 4vw, 3.2rem), 1.1): section h2; tile h2 clamp(2rem, 3.2vw, 2.8rem); the closing call up to 5rem; marquee words clamp(2rem, 4.4vw, 3.4rem).
 - **Title** (500, 1.5rem, 1.1): h3; tile h3 clamp(1.3rem, 2vw, 1.7rem); mini tile 1.25rem; list and partner names 1.2rem.
 - **Body** (400, 17px, 1.6, muted): paragraphs; tile paragraphs capped near 34ch, split text near 40ch.
@@ -194,11 +202,11 @@ A near-monochrome warm neutral set with one dark brown and one tan used sparingl
 - **Label** (Manrope 600, 0.8rem, 0.08em, uppercase): footer column headings only.
 
 ### Named Rules
-**The Balanced Title Rule.** All h1 to h3 use `text-wrap: balance` and negative tracking; never loosen them or set them in capitals.
+**The Balanced Title Rule.** All h1 to h3 use `text-wrap: balance` and negative tracking; never loosen them or set them in capitals. The serif belongs to the home h1 and nowhere else.
 
 ## Layout
 
-Single container: `min(1180px, 100% - 48px)` (100% - 32px under 560px). Sections breathe at 112px vertical padding (76px under 900px; `tight` sections 56px). The home opens with a header row (1.2fr title, .8fr lead and buttons, bottom aligned, 48px gap) above the hero mosaic.
+Single container: `min(1180px, 100% - 48px)` (100% - 32px under 560px). Sections breathe at 112px vertical padding (76px under 900px; `tight` sections 56px). The home opens with the full-width Home Hero, which runs under its floating header.
 
 The core structure is the bento: `grid-template-columns: repeat(12, 1fr)`, rows of 236px, 20px gap. Each tile declares its own column span and row span (4 columns by default; spans of 2, 3, 5, 6 are used, with 2-row tall tiles for photos and app captures). The hero mosaic uses a fluid row of 150 to 215px; partner and contact mosaics set their own row (320px, 160px). The contact page splits a 5-column stack (info and social tiles) beside a 7-column, 4-row form tile. Inner pages are short bentos: solutions holds two app tiles (6 columns each) above a four-column steps box; professionnels holds one HoneyPro tile, one wide mini tile and two half mini tiles, then a split with the form card; a-propos holds a 5/7 mission and vision pair above a four-column values box. Remaining non-mosaic structures: a two-column split (88px gap, text beside a 500px photo frame, alternating sides), inner-page headers (title left, photo right), hairline column boxes, a centred scroll-grow photo band, a word marquee strip, and a centred closing call.
 
@@ -221,6 +229,16 @@ Soft and round with one radius for the mosaic. Pills (999px) for buttons, the sk
 
 ## Components
 
+### Home Hero
+Home page only (`assets/hero.css`, `hero.js`, `hero-motion.js`; every motion setting sits at the top of `hero.css`).
+- **Frame:** full width, `clamp(560px, 100svh, 820px)` high, under an 88px header. Under 900px the photo sits above the text.
+- **Slides:** Coiffure, Maquillage, Massage & spa, Barbier. Each photo holds the right 62% and fades into a flat background tone matched to it; the tone, the photo and the eyebrow change together every 5s (1.1s cross-fade, slow zoom to 1.05). The first photo loads at once, the others after the page.
+- **Text:** bottom left: eyebrow naming the service, the serif title, one sentence, then the service buttons with a progress line and a pause button. Calls to action sit bottom right: one white pill, one translucent pill.
+- **Header:** a white pill floating on the photo, blurred with a soft shadow after scroll; a single underline slides between links; links collapse into the menu under 1060px.
+- **Pointer:** mouse only, on the header and hero: dot and sprung ring, a "Découvrir" disc over the photo, magnetic buttons.
+- **Reduced motion:** no autoplay, zoom or custom pointer; slides are chosen by hand.
+- Add a slide only with a real photo of that service. Landscape photos of 2000px or more would let a photo fill the whole frame.
+
 ### Buttons
 - **Shape:** full pill (999px), minimum 44px high, 1.5px border.
 - **Primary:** ink fill, white Archivo 700 text, padding 12px 28px.
@@ -229,7 +247,7 @@ Soft and round with one radius for the mosaic. Pills (999px) for buttons, the sk
 - **Text link:** Archivo 700 with a 1.5px underline rule; hover turns espresso and the arrow nudges up-right.
 
 ### Navigation
-Sticky, 96% white, 72px tall, logo at 28px. Links are Manrope 600 at 0.92rem in muted grey; hover and current page turn ink and draw a 2px honey-tan underline from the left. A hairline appears under the bar after scroll. Under 900px links collapse into a details menu behind a round bordered button.
+On inner pages: sticky, 96% white, 72px tall, logo at 28px. Links are Manrope 600 at 0.92rem in muted grey; hover and current page turn ink and draw a 2px honey-tan underline from the left. A hairline appears under the bar after scroll. Under 900px links collapse into a details menu behind a round bordered button.
 
 ### Bento Tiles
 The unit of the system. Base tile: soft panel, 20px corners, 28px padding, content spaced between top and bottom. Variants: **white** (white with a hairline), **ink** (the one sync tile, with a pill flow "Honey App to HoneyPro" and a honey-tan dot travelling along a line), **photo** (no padding, the photo fills the tile and takes the frame reveal; one is the arch), **mini** (22px padding, a 30px espresso icon above a 1.25rem title and a short line; a wide mini steps title up to 1.7rem), and **ticks** (a list of Archivo 500 lines with 24px espresso icons). Tiles enter in a cascade (fade and rise, staggered by an inline delay); the hero tiles rise 32px at .97 scale and then lift on scroll at alternating rates (odd 26px, even 52px) where scroll-driven animation is supported.
@@ -270,7 +288,7 @@ Black (#0b0a0a): a white Archivo statement, the inverted logo, link columns in l
 - **Do** separate with 1px hairlines and tone before reaching for a shadow.
 
 ### Don't:
-- **Don't** stack full-width sections where a mosaic would carry the same content, or put a full-width photo hero veiled in brown on any page.
+- **Don't** stack full-width sections where a mosaic would carry the same content, or veil a photo hero in brown. The full-width photo hero belongs to the home only.
 - **Don't** fill sections or buttons with brown.
 - **Don't** add shadows to tiles, cards or photo frames; the pointer glow is the tile hover.
 - **Don't** loosen or capitalize titles; Archivo stays 500, tight, sentence case.
