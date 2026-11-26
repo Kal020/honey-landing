@@ -58,6 +58,48 @@
     dockUpdate();
   }
 
+  /* titres de fin écrits au clavier : [data-type] se tape lettre par lettre après le reste du titre.
+     La place du texte est réservée dès le départ ; sans JavaScript ou en mouvement réduit, il reste entier. */
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !still) {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-type]'), function (el) {
+      var title = el.closest('h2');
+      var after = title.textContent.trim() === el.textContent.trim() ? 600 : 1100;
+      var chars = [];
+      title.setAttribute('aria-label', title.textContent.replace(/\s+/g, ' ').trim());
+      var words = el.textContent.split(' ');
+      el.textContent = '';
+      el.setAttribute('aria-hidden', 'true');
+      words.forEach(function (word, w) {
+        var box = el.appendChild(document.createElement('span'));
+        box.className = 'tw';
+        (word + (w < words.length - 1 ? ' ' : '')).split('').forEach(function (letter) {
+          var c = document.createElement('span');
+          c.className = 'tc';
+          c.textContent = letter;
+          chars.push(c);
+          (letter === ' ' ? el : box).appendChild(c);
+        });
+      });
+      var i = 0;
+      function type() {
+        if (i === 0) chars[0].classList.remove('start');
+        else chars[i - 1].classList.remove('caret');
+        chars[i].classList.add('on', 'caret');
+        i += 1;
+        /* léger rythme irrégulier, comme une vraie frappe */
+        if (i < chars.length) setTimeout(type, 70 + Math.random() * 80);
+      }
+      var seen = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        seen.disconnect();
+        chars[0].classList.add('start');
+        setTimeout(type, after);
+      }, { threshold: 0.6 });
+      seen.observe(title);
+    });
+  }
+
   var els = Array.prototype.slice.call(document.querySelectorAll('.rv, .fr, .scr, .fmark, .bx'));
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

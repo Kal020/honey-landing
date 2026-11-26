@@ -409,5 +409,16 @@ html.js .fmark.in i{transform:translateY(20%)}
 
 .closing h2 .hl{color:var(--accent)}
 
+/* frappe au clavier des titres de fin (site.js) */
+.tw{display:inline-block;white-space:nowrap}
+.tc{position:relative;color:transparent}
+.tc.on{color:inherit}
+.tc.start::before,.tc.caret::after{content:"";position:absolute;top:50%;width:max(2px,.055em);height:.95em;translate:0 -50%;background:var(--ink);animation:caret 1s steps(1) infinite}
+/* la barre prend la couleur du texte qu'elle écrit : marron clair sur les mots colorés */
+.hl .tc::before,.hl .tc::after{background:var(--accent) !important}
+.tc.start::before{left:0}
+.tc.caret::after{left:calc(100% + .02em)}
+@keyframes caret{50%{opacity:0}}
+
 .pro>div{position:relative;z-index:1}
 .pro .fl{z-index:0}
