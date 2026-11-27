@@ -100,6 +100,87 @@
     });
   }
 
+  /* le problème que Honey App résout : une question ouverte à la fois, la capture suit.
+     Défilement automatique quand la tuile est visible ; il s'arrête dès qu'on choisit une question. */
+  var sol = document.querySelector('.sol');
+  if (sol) {
+    var rows = sol.querySelectorAll('li'), shots = sol.querySelectorAll('.sol-scr img');
+    var pause = sol.querySelector('.sol-pause'), cur = 0, auto = false;
+    var show = function (n) {
+      cur = n;
+      Array.prototype.forEach.call(rows, function (li, k) {
+        li.classList.toggle('on', k === n);
+        li.querySelector('button').setAttribute('aria-expanded', String(k === n));
+        shots[k].classList.toggle('on', k === n);
+      });
+    };
+    var setAuto = function (v) {
+      auto = v;
+      sol.classList.toggle('play', v);
+      pause.setAttribute('aria-label', v ? 'Mettre le défilement en pause' : 'Reprendre le défilement');
+      pause.firstElementChild.className = 'ph-light ph-' + (v ? 'pause' : 'play');
+    };
+    Array.prototype.forEach.call(rows, function (li, k) {
+      li.querySelector('button').addEventListener('click', function () { setAuto(false); show(k); });
+    });
+    if ('IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      /* la barre de progression sert de minuterie ; elle attend que la tuile soit visible et non survolée */
+      sol.addEventListener('animationend', function (e) {
+        if (auto && e.animationName === 'sol-t') show((cur + 1) % rows.length);
+      });
+      var seenSol = false, over = false;
+      var hold = function () { sol.classList.toggle('hold', over || !seenSol); };
+      sol.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { over = true; hold(); } });
+      sol.addEventListener('pointerleave', function () { over = false; hold(); });
+      new IntersectionObserver(function (en) { seenSol = en[0].isIntersecting; hold(); }, { threshold: 0.35 }).observe(sol);
+      pause.hidden = false;
+      pause.addEventListener('click', function () { setAuto(!auto); });
+      hold();
+      setAuto(true);
+    }
+  }
+
+  /* éventail de photos : la suivante passe devant toutes les 5 s ; une action de la personne arrête le défilement */
+  var fid = document.querySelector('.fid-ph');
+  if (fid) {
+    var pics = fid.querySelectorAll('.fid-st img'), ctl = fid.querySelector('.fid-ctl');
+    var toggle = ctl.querySelector('[data-fid="0"]');
+    var at = 0, timer = null, running = false, visible = false, hover = false;
+    var place = function (n) {
+      at = (n + pics.length) % pics.length;
+      Array.prototype.forEach.call(pics, function (p, k) {
+        var d = (k - at + pics.length) % pics.length;
+        p.className = d === 0 ? 'front' : d === 1 ? 'right' : d === pics.length - 1 ? 'left' : 'back';
+      });
+    };
+    var tickFid = function () {
+      clearInterval(timer);
+      timer = running && visible && !hover ? setInterval(function () { place(at + 1); }, 5000) : null;
+    };
+    var run = function (v) {
+      running = v;
+      toggle.setAttribute('aria-label', v ? 'Mettre le défilement en pause' : 'Reprendre le défilement');
+      toggle.firstElementChild.className = 'ph-light ph-' + (v ? 'pause' : 'play');
+      tickFid();
+    };
+    ctl.hidden = false;
+    ctl.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      var d = Number(b.getAttribute('data-fid'));
+      if (d) { place(at + d); run(false); } else run(!running);
+    });
+    Array.prototype.forEach.call(pics, function (p, k) {
+      p.addEventListener('click', function () { if (k !== at) { place(k); run(false); } });
+    });
+    fid.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hover = true; tickFid(); } });
+    fid.addEventListener('pointerleave', function () { hover = false; tickFid(); });
+    if ('IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; tickFid(); }, { threshold: 0.35 }).observe(fid);
+      run(true);
+    } else toggle.hidden = true;
+  }
+
   var els = Array.prototype.slice.call(document.querySelectorAll('.rv, .fr, .scr, .fmark, .bx'));
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -1,1 +1,1 @@
-{"cleanUrls":true,"rewrites":[{"source":"/","destination":"/honey-landing"}]}
+{"cleanUrls":true,"redirects":[{"source":"/solutions","destination":"/","permanent":false}],"rewrites":[{"source":"/","destination":"/honey-landing"}]}

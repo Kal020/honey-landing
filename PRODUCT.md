@@ -18,11 +18,16 @@ Clientes et clients des instituts de beauté et de coiffure de Kinshasa (réserv
 
 ## Product Purpose
 
-Honey réunit la beauté à Kinshasa au même endroit : Honey App pour découvrir, comparer et réserver (prix en FC, avis, créneaux libres) et HoneyPro pour que l'institut gère sa journée, son équipe et son activité. La landing présente les deux et fait agir : commencer sur Honey App, ou ajouter son institut.
+Honey réunit la beauté à Kinshasa au même endroit : Honey App pour découvrir, comparer et réserver (prix en FC, avis, créneaux libres) et HoneyPro pour que l'institut gère sa journée, son équipe et son activité.
+
+Répartition de la landing :
+
+- **Accueil : Honey App seulement.** Il s'adresse aux clientes et clients, dit quel problème Honey App résout et fait commencer sur Honey App.
+- **Espace Pro : HoneyPro.** Il s'adresse aux propriétaires d'instituts, présente HoneyPro et fait ajouter son institut.
 
 ## Positioning
 
-Deux applications reliées : ce qui est réservé dans Honey App apparaît aussitôt dans l'agenda de l'institut, sur HoneyPro.
+Deux applications reliées : ce qui est réservé dans Honey App apparaît aussitôt dans l'agenda de l'institut, sur HoneyPro. Ce lien entre les deux applications ne se présente pas sur l'accueil.
 
 ## Capabilities and Constraints
 
@@ -43,7 +48,7 @@ Captures réelles des applications (assets/app-*.webp, assets/pro-*.webp), photo
 
 ## Product Principles
 
-1. Une action claire par écran : commencer, ou ajouter son institut.
+1. Une action claire par écran : commencer (Accueil), ajouter son institut (Espace Pro).
 2. Prix en FC et avis visibles avant de réserver.
 3. Les captures des applications sont la preuve ; la page reste calme autour d'elles.
 4. Aucune affirmation chiffrée ou commerciale non confirmée.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-24T18:00:00Z",
+  "generatedAt": "2026-11-27T16:20:24.821Z",
   "title": "Design System: Honey Landing",
   "extensions": {
     "colorMeta": {
@@ -113,15 +113,15 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Home h1 on two lines, Archivo 500, -0.04em, line-height .98."
+        "purpose": "Large Archivo titles, -0.04em, line-height .98."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section and tile h2, marquee words, closing call."
+        "purpose": "Section and tile h2, closing call."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "h3, tile and partner names."
+        "purpose": "h3 and problem tile questions."
       },
       "body": {
         "displayName": "Body",
@@ -137,7 +137,11 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Footer column headings only."
+        "purpose": "Footer column headings."
+      },
+      "home-hero": {
+        "displayName": "Home hero",
+        "purpose": "Home h1 only, Playfair Display, second line italic espresso."
       }
     },
     "shadows": [
@@ -150,6 +154,11 @@
         "name": "field-focus",
         "value": "0 0 0 3px rgba(80,35,20,.14)",
         "purpose": "Focused input ring."
+      },
+      {
+        "name": "fan-photo",
+        "value": "0 14px 34px -12px rgba(17,17,17,.32)",
+        "purpose": "Stacked photos of the loyalty fan only."
       }
     ],
     "motion": [
@@ -169,16 +178,6 @@
         "purpose": "Warm glow following the pointer inside a tile; fine pointers only."
       },
       {
-        "name": "mosaic-lift",
-        "value": "translate 0 -26px (odd) / -52px (even) over scroll 0 to 70vh",
-        "purpose": "Hero mosaic parallax lift via scroll-driven animation where supported."
-      },
-      {
-        "name": "marquee",
-        "value": "translateX(-50%) linear infinite; 46s words",
-        "purpose": "Home word marquee; pauses on hover."
-      },
-      {
         "name": "scroll-grow",
         "value": "scale(.68 + .32 * --p), radius 56px to 20px, image 1.28 to 1",
         "purpose": "Band photo driven by --p (0 to 1) set from scroll."
@@ -192,6 +191,26 @@
         "name": "screenshot-rise",
         "value": "opacity .9s, transform 1.3s var(--ease); from translateY(64px)",
         "purpose": "Bare app screenshot entrance inside its tile."
+      },
+      {
+        "name": "problem-timer",
+        "value": "scale 0 1 to 1 1, 6s linear",
+        "purpose": "Progress line that advances the home problem tile; pauses off screen and on hover."
+      },
+      {
+        "name": "problem-swap",
+        "value": "opacity .5s, translate .7s var(--ease); from translateY(28px)",
+        "purpose": "Capture change in the problem tile."
+      },
+      {
+        "name": "ink-travel",
+        "value": "left 0 to 100%, 2.6s var(--ease) infinite",
+        "purpose": "Dot travelling along the ink tile flow line."
+      },
+      {
+        "name": "fan-swap",
+        "value": "transform .8s cubic-bezier(.4,2,.3,1), every 5s",
+        "purpose": "Home loyalty fan of three photos."
       }
     ],
     "breakpoints": [
@@ -206,7 +225,7 @@
     ],
     "iconography": {
       "family": "Phosphor icon font, weight light (class ph-light), @phosphor-icons/web 2.1.0",
-      "sizes": "30px mini tile, 34px column box, 24px ticks, 16-18px button arrows, 22px menu",
+      "sizes": "30px mini tile, 34px column box, 26px problem questions, 16-18px button arrows, 22px menu",
       "purpose": "Tile, tick and button icons; decorative, aria-hidden, inherit colour."
     }
   },
@@ -232,14 +251,14 @@
       "kind": "custom",
       "refersTo": "button-primary",
       "description": "Underlined Archivo link turning espresso on hover.",
-      "html": "<a class=\"ds-link\" href=\"#\">Voir Honey App</a>",
+      "html": "<a class=\"ds-link\" href=\"#\">En savoir plus</a>",
       "css": ".ds-link{display:inline-flex;align-items:center;min-height:44px;font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:.95rem;color:#111;text-decoration:none;border-bottom:1.5px solid currentColor;transition:color .25s} .ds-link:hover{color:#502314} .ds-link:focus-visible{outline:2px solid #111;outline-offset:3px}"
     },
     {
       "name": "Nav Link",
       "kind": "nav",
       "description": "Muted link that draws a honey-tan underline.",
-      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Solutions</a><a href=\"#\">Contact</a></nav>",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Espace Pro</a><a href=\"#\">Contact</a></nav>",
       "css": ".ds-nav{display:flex;gap:4px;background:#fff} .ds-nav a{position:relative;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;text-decoration:none;font-family:Manrope,system-ui,sans-serif;font-weight:600;font-size:.92rem;color:#5a5754;transition:color .25s} .ds-nav a::after{content:\"\";position:absolute;left:12px;right:12px;bottom:9px;height:2px;background:#b37b54;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)} .ds-nav a:hover,.ds-nav a[aria-current]{color:#111} .ds-nav a:hover::after,.ds-nav a[aria-current]::after{transform:scaleX(1)} .ds-nav a:focus-visible{outline:2px solid #111;outline-offset:3px}"
     },
     {
@@ -247,7 +266,7 @@
       "kind": "card",
       "refersTo": "tile-mini",
       "description": "White hairline bento tile: a brown icon over a short title and line.",
-      "html": "<div class=\"ds-mini\"><span class=\"ds-mini-i\" aria-hidden=\"true\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/></svg></span><div><h3>Créneaux libres</h3><p>Réserver au moment qui convient.</p></div></div>",
+      "html": "<div class=\"ds-mini\"><span class=\"ds-mini-i\" aria-hidden=\"true\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/></svg></span><div><h3>Votre journée</h3><p>Les rendez-vous du jour, équipe par équipe.</p></div></div>",
       "css": ".ds-mini{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:26px;min-height:236px;padding:22px;background:#fff;border:1px solid #e9e5e0;border-radius:20px;font-family:Manrope,sans-serif} .ds-mini::before{content:\"\";position:absolute;inset:0;z-index:-1;opacity:0;background:radial-gradient(380px circle at 50% 50%,rgba(179,123,84,.18),transparent 62%);transition:opacity .5s} .ds-mini:hover::before{opacity:1} .ds-mini-i{color:#502314;line-height:1} .ds-mini h3{font-family:Archivo,sans-serif;font-weight:500;font-size:1.25rem;letter-spacing:-.03em;line-height:1.1;color:#111} .ds-mini p{margin:6px 0 0;font-size:.9rem;color:#5a5754}"
     },
     {
@@ -255,7 +274,7 @@
       "kind": "card",
       "refersTo": "tile",
       "description": "Default bento tile: pale panel, title and line, pointer glow on hover.",
-      "html": "<div class=\"ds-tile\"><h2>Honey App</h2><p>Découvrir, comparer, réserver.</p></div>",
+      "html": "<div class=\"ds-tile\"><h2>HoneyPro</h2><p>La journée, l’équipe et les recettes d’un institut.</p></div>",
       "css": ".ds-tile{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;min-height:236px;padding:28px;background:#f7f4f1;border-radius:20px;color:#5a5754;font-family:Manrope,sans-serif} .ds-tile::before{content:\"\";position:absolute;inset:0;z-index:-1;opacity:0;background:radial-gradient(380px circle at 50% 50%,rgba(179,123,84,.18),transparent 62%);transition:opacity .5s} .ds-tile:hover::before{opacity:1} .ds-tile h2{margin:0;font-family:Archivo,sans-serif;font-weight:500;font-size:2.2rem;letter-spacing:-.03em;line-height:1.1;color:#111} .ds-tile p{margin:12px 0 0;max-width:34ch}"
     },
     {
@@ -267,26 +286,12 @@
       "css": ".ds-app{position:relative;overflow:hidden;min-height:420px;padding:32px 32px 0;background:#f7f4f1;border-radius:20px;font-family:Manrope,sans-serif;color:#5a5754} .ds-app h2{margin:0;font-family:Archivo,sans-serif;font-weight:500;font-size:2.2rem;letter-spacing:-.03em;line-height:1.1;color:#111} .ds-app p{margin:12px 0 0;max-width:30ch} .ds-scr{position:absolute;bottom:0;left:50%;margin:0 0 0 -120px;width:240px;height:240px;overflow:hidden;background:#fff;border:1px solid #e9e5e0;border-bottom:0;border-radius:18px 18px 0 0} .ds-cap{height:100%;background:linear-gradient(#fff,#f7f4f1)}"
     },
     {
-      "name": "Ink Sync Tile",
+      "name": "Ink Claim Tile",
       "kind": "card",
       "refersTo": "tile-ink",
       "description": "The single ink tile: a claim and a flow line with a travelling honey-tan dot.",
-      "html": "<div class=\"ds-ink\"><div><h3>Réservé ici, visible là.</h3><p>Un rendez-vous pris dans Honey App apparaît aussitôt dans l'agenda de l'institut.</p></div><div class=\"ds-flow\"><span>Honey App</span><i><b></b></i><span>HoneyPro</span></div></div>",
-      "css": ".ds-ink{display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:236px;padding:28px;background:#111;color:#fff;border-radius:20px;font-family:Manrope,sans-serif} .ds-ink h3{margin:0;font-family:Archivo,sans-serif;font-weight:500;font-size:1.7rem;letter-spacing:-.03em;line-height:1.1} .ds-ink p{margin:12px 0 0;max-width:34ch;color:#cfc8c1} .ds-flow{display:flex;align-items:center;gap:14px;font-family:Archivo,sans-serif;font-weight:700;font-size:.9rem} .ds-flow span{padding:9px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.4)} .ds-flow span:last-child{background:#fff;color:#111;border-color:#fff} .ds-flow i{position:relative;flex:1;height:2px;background:rgba(255,255,255,.28)} .ds-flow b{position:absolute;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:#b37b54;animation:ds-go 2.6s cubic-bezier(.16,1,.3,1) infinite} @keyframes ds-go{0%{left:0;opacity:0}12%{opacity:1}80%{opacity:1}100%{left:calc(100% - 10px);opacity:0}}"
-    },
-    {
-      "name": "Marquee Strip",
-      "kind": "custom",
-      "description": "Hairline-ruled word marquee with honey-tan dot separators.",
-      "html": "<div class=\"ds-mq\"><div class=\"ds-mqt\"><ul><li>Prix en FC</li><li>Avis</li><li>Créneaux libres</li></ul><ul aria-hidden=\"true\"><li>Prix en FC</li><li>Avis</li><li>Créneaux libres</li></ul></div></div>",
-      "css": ".ds-mq{overflow:hidden;border-block:1px solid #eeeae6;padding:22px 0} .ds-mqt{display:flex;width:max-content;animation:ds-mq 46s linear infinite} .ds-mq:hover .ds-mqt{animation-play-state:paused} .ds-mqt ul{display:flex;flex:none;list-style:none;margin:0;padding:0} .ds-mqt li{display:flex;align-items:center;font-family:Archivo,sans-serif;font-weight:500;font-size:clamp(2rem,4.4vw,3.4rem);letter-spacing:-.03em;line-height:1.2;white-space:nowrap;color:#111} .ds-mqt li::after{content:\"\";width:12px;height:12px;border-radius:50%;background:#b37b54;margin:0 44px} @keyframes ds-mq{to{transform:translateX(-50%)}} @media (prefers-reduced-motion:reduce){.ds-mqt{animation:none}.ds-mq{overflow-x:auto}}"
-    },
-    {
-      "name": "Partner Chip",
-      "kind": "chip",
-      "description": "Hairline chip with a rounded initial badge.",
-      "html": "<div class=\"ds-partner\"><span class=\"ds-ini\">H</span><div><b>Institut</b><span>Gombe</span></div></div>",
-      "css": ".ds-partner{display:flex;align-items:center;gap:16px;border:1px solid #e9e5e0;border-radius:20px;padding:16px 24px 16px 16px;transition:border-color .3s,transform .4s cubic-bezier(.16,1,.3,1)} .ds-partner:hover{border-color:#cfc6bd;transform:translateY(-2px)} .ds-ini{width:48px;height:48px;border-radius:14px;background:#f7f4f1;color:#502314;font-family:Archivo,sans-serif;font-weight:500;font-size:1.3rem;display:grid;place-items:center} .ds-partner b{display:block;font-family:Archivo,sans-serif;font-weight:500;font-size:1.2rem;letter-spacing:-.02em;color:#111} .ds-partner span:not(.ds-ini){font-size:.95rem;color:#5a5754}"
+      "html": "<div class=\"ds-ink\"><div><h3>Avec Honey App</h3><p>Réserve quand tu veux et reçois une réponse en moins de 30 min.</p></div><div class=\"ds-flow\"><span>Tu choisis</span><i><b></b></i><span>C’est réservé</span></div></div>",
+      "css": ".ds-ink{display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:236px;padding:28px;background:#111;color:#fff;border-radius:20px;font-family:Manrope,sans-serif} .ds-ink h3{margin:0;font-family:Archivo,sans-serif;font-weight:500;font-size:1.7rem;letter-spacing:-.03em;line-height:1.1} .ds-ink p{margin:12px 0 0;max-width:34ch;color:#cfc8c1} .ds-flow{display:flex;align-items:center;gap:14px;font-family:Archivo,sans-serif;font-weight:700;font-size:.9rem} .ds-flow span{padding:9px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.4)} .ds-flow span:last-child{background:#fff;color:#111;border-color:#fff} .ds-flow i{position:relative;flex:1;height:2px;background:rgba(255,255,255,.28)} .ds-flow b{position:absolute;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:#b37b54;animation:ds-go 2.6s cubic-bezier(.16,1,.3,1) infinite} @keyframes ds-go{0%{left:0;opacity:0}12%{opacity:1}80%{opacity:1}100%{left:calc(100% - 10px);opacity:0}} @media (prefers-reduced-motion:reduce){.ds-flow b{animation:none;left:calc(50% - 5px)}}"
     },
     {
       "name": "Form Field",
@@ -303,14 +308,36 @@
       "description": "Fixed white pill with two equal buttons, phone widths only.",
       "html": "<div class=\"ds-dock\"><a class=\"ds-dbtn\" href=\"#\">Commencer</a><a class=\"ds-dbtn ds-dout\" href=\"#\">Ajouter mon institut</a></div>",
       "css": ".ds-dock{display:flex;gap:8px;padding:8px;background:#fff;border:1px solid #e9e5e0;border-radius:999px} .ds-dbtn{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px;border-radius:999px;border:1.5px solid #111;background:#111;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:.88rem;letter-spacing:-.01em;text-decoration:none} .ds-dout{background:transparent;color:#111} .ds-dbtn:focus-visible{outline:2px solid #111;outline-offset:3px}"
+    },
+    {
+      "name": "Problem Questions",
+      "kind": "custom",
+      "description": "Home problem tile list: one question open at a time, with its answer and a tan progress line.",
+      "html": "<ul class=\"ds-q\"><li class=\"on\"><button type=\"button\" aria-expanded=\"true\">Combien ça coûte ?</button><p>Le prix en FC est affiché avant de choisir ta prestation.</p></li><li><button type=\"button\" aria-expanded=\"false\">Quel institut choisir ?</button></li></ul>",
+      "css": ".ds-q{list-style:none;margin:0;padding:20px 28px;background:#f7f4f1;border-radius:20px;font-family:Manrope,sans-serif} .ds-q li{position:relative;border-top:1px solid #e9e5e0} .ds-q li:first-child{border-top:0} .ds-q button{width:100%;min-height:62px;padding:10px 0;border:0;background:none;text-align:left;cursor:pointer;font-family:Archivo,system-ui,sans-serif;font-weight:500;letter-spacing:-.02em;font-size:1.2rem;color:#5a5754} .ds-q button:hover,.ds-q .on button{color:#111} .ds-q button:focus-visible{outline:2px solid #111;outline-offset:3px} .ds-q p{margin:0;padding:0 0 16px;font-size:.95rem;color:#5a5754} .ds-q .on::after{content:\"\";position:absolute;left:0;bottom:0;width:45%;height:2px;background:#b37b54}"
+    },
+    {
+      "name": "Column Box",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Hairline-divided steps: icon on top, title and line below.",
+      "html": "<div class=\"ds-box\"><div><svg width=\"34\" height=\"34\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M16 16l5 5\"/></svg><section><h3>Choisir</h3><p>Un institut, une prestation, un créneau libre.</p></section></div><div><svg width=\"34\" height=\"34\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"><rect x=\"4\" y=\"5\" width=\"16\" height=\"15\" rx=\"1\"/><path d=\"M4 10h16M8 3v4M16 3v4\"/></svg><section><h3>Réserver</h3><p>Les frais de réservation se règlent en ligne.</p></section></div></div>",
+      "css": ".ds-box{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e9e5e0;border-radius:20px;overflow:hidden;background:#fff;font-family:Manrope,sans-serif} .ds-box>div{display:flex;flex-direction:column;justify-content:space-between;gap:56px;padding:28px;border-left:1px solid #e9e5e0;color:#502314;transition:background .35s} .ds-box>div:first-child{border-left:0} .ds-box>div:hover{background:#f7f4f1} .ds-box h3{margin:0;font-family:Archivo,system-ui,sans-serif;font-weight:500;letter-spacing:-.02em;font-size:1.4rem;color:#111} .ds-box p{margin:8px 0 0;font-size:.98rem;color:#5a5754}"
+    },
+    {
+      "name": "Salon Card",
+      "kind": "card",
+      "description": "Photo card with a white name pill and the category below. The grey fill stands for the photo.",
+      "html": "<a class=\"ds-sal\" href=\"#\"><span class=\"ds-sf\"><span class=\"ds-pill\">Royal Spa</span></span><small>Massage &amp; spa</small></a>",
+      "css": ".ds-sal{display:block;width:240px;text-decoration:none;font-family:Manrope,sans-serif} .ds-sf{position:relative;display:block;aspect-ratio:1/1.08;border-radius:20px;background:#e9e5e0} .ds-pill{position:absolute;left:12px;bottom:12px;padding:9px 16px;border-radius:999px;background:#fff;color:#111;font-family:Archivo,sans-serif;font-weight:700;font-size:.92rem} .ds-sal small{display:block;margin-top:10px;font-size:.88rem;color:#5a5754} .ds-sal:focus-visible{outline:2px solid #111;outline-offset:3px}"
     }
   ],
   "narrative": {
     "northStar": "The Tiled Gallery Wall",
-    "overview": "The pages are still a white wall, but it is now tiled. A twelve-column bento mosaic of photos of real salons and real captures of the two apps (Honey App, HoneyPro) is hung on it, and each tile proves one thing: prices in FC, reviews, free slots, a booking that shows up at once in the salon's agenda. The chrome stays quiet: near-black ink, warm grey text, pale warm panels, a black footer. Colour lives inside the app captures.\n\nBrown is a pinch of seasoning. Espresso (#502314) and honey tan (#b37b54) appear as small details: icons, the travelling dot, marquee separators, nav underlines, the partner initial, one Vision tile, text selection. The hero title is very large (up to 6rem) on two lines; everything else is calm. Motion is soft and physical: tiles rise in a cascade, the top mosaic lifts at different speeds on scroll, a warm glow follows the pointer, words drift in a marquee, and one band photo grows as it enters. Never a bounce.\n\nThe system rejects a column of stacked sections and a full-width photo hero veiled in brown; brown tiles are never the general surface.",
+    "overview": "The pages are still a white wall, but it is now tiled. Photos of real salons and real captures of the apps are hung on twelve-column bento mosaics, and each tile proves one thing. The home speaks to customers and shows Honey App only: the questions it answers (price in FC, which salon, booking without a call, the confirmed appointment). HoneyPro lives on the Espace Pro page. The chrome stays quiet: near-black ink, warm grey text, pale warm panels, a black footer. Colour lives inside the photos and app captures.\n\nBrown is a pinch of seasoning. Espresso (#502314) and honey tan (#b37b54) appear as small details: icons, the travelling dot, the progress line, nav underlines, home section eyebrows, one Vision tile, text selection. The home hero title is very large on two lines; everything else is calm. Motion is soft and physical: tiles rise in a cascade, a warm glow follows the pointer, the problem tile walks through its questions, and one band photo grows as it enters. Never a bounce.\n\nThe system rejects a column of stacked sections and a photo hero veiled in brown; brown tiles are never the general surface. The home opening is the one exception to the bento: a full-width service slideshow (see Components, Home Hero).",
     "keyCharacteristics": [
       "White page; tiles are #f7f4f1 or white with a hairline; at most one ink tile per mosaic; black footer.",
-      "12-column bento grid, 20px gaps, 20px tile corners; one arch (round top) for the lead photo.",
+      "12-column bento grid, 20px gaps, 20px tile corners.",
       "Bare app screenshots (no device frame): 18px rounded top corners, 1px hairline, cropped by the bottom edge of an app tile.",
       "Archivo 500 titles, tightly tracked and very large in the hero; Manrope body; pill buttons.",
       "Depth is tonal and hairline; shadow only on the mobile menu and a focused field; the pointer glow is a tone, not a shadow."
@@ -318,12 +345,12 @@
     "rules": [
       {
         "name": "The Pinch of Brown Rule",
-        "body": "Brown and tan mark details, never fill sections or buttons. The one large brown surface is the Vision tile; it is a single tile, not a pattern.",
+        "body": "Brown and tan mark details, never buttons or ordinary tiles. The one large brown surface is the Vision tile; it is a single tile, not a pattern.",
         "section": "colors"
       },
       {
         "name": "The One Ink Tile Rule",
-        "body": "A mosaic holds at most one ink tile, and it carries the single most important claim (synchronisation). Ink is not a second tile colour.",
+        "body": "A mosaic holds at most one ink tile, and it carries one strong claim (on the home: booking without calls or messages). Ink is not a second tile colour.",
         "section": "colors"
       },
       {
@@ -333,7 +360,7 @@
       },
       {
         "name": "The Balanced Title Rule",
-        "body": "All h1 to h3 use text-wrap: balance and negative tracking; never loosen them or set them in capitals.",
+        "body": "All h1 to h3 use `text-wrap: balance` and negative tracking; never loosen them or set them in capitals. The serif belongs to the home h1 and nowhere else.",
         "section": "typography"
       },
       {
@@ -344,6 +371,7 @@
     ],
     "dos": [
       "Do keep the page white and let photos and real app captures carry the colour.",
+      "Do keep the home about Honey App; HoneyPro belongs to Espace Pro.",
       "Do compose pages as 12-column bento mosaics with 20px gaps and 20px corners; give each tile one claim.",
       "Do use brown (#502314) and tan (#b37b54) only for details, plus the single Vision tile; allow at most one ink tile per mosaic.",
       "Do show every app screenshot bare (18px top corners, hairline) cropped at the tile's bottom edge, and use only real owner-supplied captures and photos.",
@@ -352,8 +380,8 @@
       "Do separate with 1px hairlines and tone before reaching for a shadow."
     ],
     "donts": [
-      "Don't stack full-width sections where a mosaic would carry the same content, or put a full-width photo hero veiled in brown on any page.",
-      "Don't fill sections or buttons with brown.",
+      "Don't stack full-width sections where a mosaic would carry the same content, or veil a photo hero in brown. The full-width photo hero belongs to the home only.",
+      "Don't fill sections or buttons with brown; the Vision tile is the only exception.",
       "Don't add shadows to tiles, cards or photo frames; the pointer glow is the tile hover.",
       "Don't loosen or capitalize titles; Archivo stays 500, tight, sentence case.",
       "Don't swap in stock photography or mocked-up screens, and don't wrap captures in a device frame."
